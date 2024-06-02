@@ -3,7 +3,7 @@ import { OpenAI } from "openai"
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 
 const llm = new OpenAI({
-  apiKey: ""
+  apiKey: "YOUR_API_KEY"
 })
 
 // const SYSTEM = "Given the transcript of a YouTube video along with relevant video metadata (such as video title, description), produce contextually relevant content as requested by the user. The output should be engaging and informative."

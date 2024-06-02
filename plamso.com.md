@@ -1,1 +1,0 @@
-# plamso.com

@@ -3,7 +3,7 @@ import { OpenAI } from "openai"
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 
 const llm = new OpenAI({
-  apiKey: ""
+  apiKey: "YOUR_API_KEY"
 })
 
 const SYSTEM = `

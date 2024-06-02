@@ -1,6 +1,6 @@
 {
-  "name": "video-chat-ai",
-  "displayName": "Video chat ai",
+  "name": "youtube-ai",
+  "displayName": "Youtube AI",
   "version": "0.0.1",
   "description": "A chrome extension that lets you chat with youtube videos",
   "author": "Paolo Nessim",
