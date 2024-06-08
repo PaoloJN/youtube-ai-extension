@@ -63,6 +63,9 @@ To install and run the YouTube Chat Extension locally, follow these steps:
 
 5. Open YouTube and start chatting with videos! :)
 
+> The extension does not support the new YouTube layout. To revert to the old layout, use the uBlock Origin extension. The extension should then work correctly.
+
+
 ## Acknowledgments
 
 This project wouldn't be possible without the following resources:
