@@ -87,5 +87,11 @@ export const models: Model[] = [
     label: "GPT-4",
     content: "gpt-4-turbo",
     icon: <IconOpenAI className="h-4 w-4 opacity-70" />
+  },
+  {
+    value: "GPT-4o",
+    label: "GPT-4o",
+    content: "gpt-4o",
+    icon: <IconOpenAI className="h-4 w-4 opacity-70" />
   }
 ]
