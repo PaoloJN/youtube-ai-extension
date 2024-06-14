@@ -1,10 +1,6 @@
-import { OpenAI } from "openai"
+import { llm } from "@/utils/llm"
 
 import type { PlasmoMessaging } from "@plasmohq/messaging"
-
-const llm = new OpenAI({
-  apiKey: "YOUR_API_KEY"
-})
 
 const SYSTEM = `
 You are a helpful assistant, Given the metadata and transcript of a YouTube video. Your primary task is to provide accurate and relevant answers to any questions based on this information. Use the available details effectively to assist users with their inquiries about the video's content, context, or any other related aspects.

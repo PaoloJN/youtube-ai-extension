@@ -1,11 +1,7 @@
 import { correctJsonString } from "@/utils/json-autocomplete"
-import { OpenAI } from "openai"
+import { llm } from "@/utils/llm"
 
 import type { PlasmoMessaging } from "@plasmohq/messaging"
-
-const llm = new OpenAI({
-  apiKey: "YOUR_API_KEY"
-})
 
 // use https://github.com/st3w4r/openai-partial-stream to stream the response
 
