@@ -1,3 +1,4 @@
+import { OPENAI_API_KEY_STORAGE_KEY } from "@/lib/constants"
 import { getProviderByModel } from "@/utils/llm"
 import { streamText, type CoreMessage } from "ai"
 
@@ -10,7 +11,7 @@ async function createCompletion(
 ) {
   console.log("Creating Chat Completion")
 
-  const aiProvider = getProviderByModel(model)
+  const aiProvider = getProviderByModel(model, context[OPENAI_API_KEY_STORAGE_KEY])
 
   const parsed = context.transcript.events
     .filter((x: { segs: any }) => x.segs)

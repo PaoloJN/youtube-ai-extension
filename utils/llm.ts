@@ -1,27 +1,27 @@
+import {
+  MISTRALAI_API_KEY_STORAGE_KEY,
+  OPENAI_API_KEY_STORAGE_KEY
+} from "@/lib/constants"
 import { createMistral } from "@ai-sdk/mistral"
 import { createOpenAI } from "@ai-sdk/openai"
 import { createOllama } from "ollama-ai-provider"
 
-export const mistralai = createMistral({
-  apiKey: "YOUR_MISTRALAI_API_KEY"
-})
-
-export const openai = createOpenAI({
-  apiKey: "YOUR_OPENAI_API_KEY"
-})
-
 export const ollama = createOllama()
 
-export const getProviderByModel = (model: string) => {
+export const getProviderByModel = (model: string, ctx: any) => {
   switch (model) {
     case "mistral-small-latest":
     case "mistral-large-latest":
-      return mistralai
+      return createMistral({
+        apiKey: ctx[MISTRALAI_API_KEY_STORAGE_KEY]
+      })
     case "phi3":
     case "llama3":
       return ollama
 
     default:
-      return openai
+      return createOpenAI({
+        apiKey: ctx[OPENAI_API_KEY_STORAGE_KEY]
+      })
   }
 }

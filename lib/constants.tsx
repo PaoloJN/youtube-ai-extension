@@ -119,3 +119,6 @@ export const models: Model[] = [
     icon: <IconOllama className="h-4 w-4 opacity-70" />
   }
 ]
+
+export const OPENAI_API_KEY_STORAGE_KEY = "openAIKey"
+export const MISTRALAI_API_KEY_STORAGE_KEY = "mistralAIKey"
