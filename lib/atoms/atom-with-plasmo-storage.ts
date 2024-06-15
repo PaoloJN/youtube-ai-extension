@@ -1,11 +1,13 @@
 import { atom } from "jotai"
 
-export const atomWithChromeStorage = <T>(key: string, initialValue: T) => {
+import { storage } from "./storage"
+
+export const atomWithPlasmoStorage = <T>(key: string, initialValue: T) => {
   const baseAtom = atom<T>(initialValue)
   baseAtom.onMount = (setValue) => {
     ;(async () => {
-      const result = await chrome.storage.sync.get([key])
-      setValue(result[key])
+      const result = await storage.get(key)
+      setValue(result as T)
     })()
   }
   const derivedAtom = atom(
@@ -13,7 +15,7 @@ export const atomWithChromeStorage = <T>(key: string, initialValue: T) => {
     (get, set, update) => {
       const nextValue = typeof update === "function" ? update(get(baseAtom)) : update
       set(baseAtom, nextValue)
-      chrome.storage.sync.set({ [key]: nextValue })
+      storage.set(key, nextValue)
     }
   )
   return derivedAtom

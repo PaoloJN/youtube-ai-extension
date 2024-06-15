@@ -1,3 +1,3 @@
-import { atomWithChromeStorage } from "./atom-with-chrome-storage"
+import { atomWithPlasmoStorage } from "./atom-with-plasmo-storage"
 
-export const openAIKeyAtom = atomWithChromeStorage<string | null>("openAIKey", null)
+export const openAIKeyAtom = atomWithPlasmoStorage<string | null>("openAIKey", null)
