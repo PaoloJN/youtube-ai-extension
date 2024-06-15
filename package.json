@@ -10,6 +10,7 @@
     "package": "plasmo package"
   },
   "dependencies": {
+    "@ai-sdk/mistral": "^0.0.17",
     "@ai-sdk/openai": "^0.0.29",
     "@ai-sdk/react": "^0.0.2",
     "@plasmohq/messaging": "^0.6.2",
