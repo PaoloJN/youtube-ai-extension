@@ -1,4 +1,6 @@
 import { llm } from "@/utils/llm"
+import { openai } from "@ai-sdk/openai"
+import { streamText } from "ai"
 
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 
@@ -32,6 +34,13 @@ async function createChatCompletion(model: string, messages: any, context: any) 
 
   console.log("Messages sent to OpenAI")
   console.log(messages)
+
+  const result = await streamText({
+    model: openai(model || "gpt-3.5-turbo"),
+    messages
+  })
+
+  const stream = result.toAIStream()
 
   return llm.beta.chat.completions.stream({
     messages: messages,
