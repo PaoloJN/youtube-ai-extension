@@ -1,4 +1,4 @@
-import { IconOpenAI, MetaLlama, MistralAI } from "@/components/ui/icons"
+import { IconMistralAI, IconOllama, IconOpenAI, MetaLlama } from "@/components/ui/icons"
 
 export type Prompt = {
   value: string
@@ -90,7 +90,7 @@ export const models: Model[] = [
   },
   {
     value: "GPT-4o",
-    label: "GPT-4ooo",
+    label: "GPT-4o",
     content: "gpt-4o",
     icon: <IconOpenAI className="h-4 w-4 opacity-70" />
   },
@@ -98,12 +98,24 @@ export const models: Model[] = [
     value: "Mistral Large",
     label: "Mistral Large",
     content: "mistral-large-latest",
-    icon: <MistralAI className="h-4 w-4 opacity-70" />
+    icon: <IconMistralAI className="h-4 w-4 opacity-70" />
   },
   {
     value: "Mistral Small",
     label: "Mistral Small",
     content: "mistral-small-latest",
-    icon: <MistralAI className="h-4 w-4 opacity-70" />
+    icon: <IconMistralAI className="h-4 w-4 opacity-70" />
+  },
+  {
+    value: "Ollama phi3",
+    label: "Ollama phi3",
+    content: "phi3",
+    icon: <IconOllama className="h-4 w-4 opacity-70" />
+  },
+  {
+    value: "Ollama llama3",
+    label: "Ollama llama3",
+    content: "llama3",
+    icon: <IconOllama className="h-4 w-4 opacity-70" />
   }
 ]
