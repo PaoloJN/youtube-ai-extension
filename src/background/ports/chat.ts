@@ -1,4 +1,5 @@
-import { llm } from "@/utils/llm"
+import { createLlm } from "@/utils/llm"
+import type { ChatCompletionMessageParam } from "openai/resources"
 
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 
@@ -14,7 +15,12 @@ START OF TRANSCRIPT
 END OF TRANSCRIPT
 `
 
-async function createChatCompletion(model: string, messages: any, context: any) {
+async function createChatCompletion(
+  model: string,
+  messages: ChatCompletionMessageParam[],
+  context: any
+) {
+  const llm = createLlm(context.openAIKey)
   console.log("Creating Chat Completion")
 
   const parsed = context.transcript.events
