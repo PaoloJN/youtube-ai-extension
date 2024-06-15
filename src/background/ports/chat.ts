@@ -1,5 +1,4 @@
-import { llm } from "@/utils/llm"
-import { openai } from "@ai-sdk/openai"
+import { createOpenAI } from "@ai-sdk/openai"
 import { streamText } from "ai"
 
 import type { PlasmoMessaging } from "@plasmohq/messaging"
@@ -15,6 +14,10 @@ START OF TRANSCRIPT
 {transcript}
 END OF TRANSCRIPT
 `
+
+const openai = createOpenAI({
+  apiKey: "YOUR_API_KEY"
+})
 
 async function createChatCompletion(model: string, messages: any, context: any) {
   console.log("Creating Chat Completion")
@@ -40,13 +43,7 @@ async function createChatCompletion(model: string, messages: any, context: any) 
     messages
   })
 
-  const stream = result.toAIStream()
-
-  return llm.beta.chat.completions.stream({
-    messages: messages,
-    model: model || "gpt-3.5-turbo",
-    stream: true
-  })
+  return result.textStream
 }
 
 const handler: PlasmoMessaging.PortHandler = async (req, res) => {
@@ -66,16 +63,13 @@ const handler: PlasmoMessaging.PortHandler = async (req, res) => {
   try {
     const completion = await createChatCompletion(model, messages, context)
 
-    completion.on("content", (delta, snapshot) => {
+    for await (const delta of completion) {
       cumulativeDelta += delta
-      // console.log("Cumulative Delta")
-      // console.log(cumulativeDelta)
-      res.send({ message: cumulativeDelta, error: null, isEnd: false })
-    })
 
-    completion.on("end", () => {
-      res.send({ message: "END", error: null, isEnd: true })
-    })
+      res.send({ message: cumulativeDelta, error: null, isEnd: false })
+    }
+
+    res.send({ message: "END", error: null, isEnd: true })
   } catch (error) {
     res.send({ error: "something went wrong" })
   }
