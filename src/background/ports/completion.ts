@@ -1,10 +1,12 @@
-import { llm } from "@/utils/llm"
+import { createLlm } from "@/utils/llm"
 
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 
 // const SYSTEM = "Given the transcript of a YouTube video along with relevant video metadata (such as video title, description), produce contextually relevant content as requested by the user. The output should be engaging and informative."
 
 async function createCompletion(model: string, prompt: string, context: any) {
+  const llm = createLlm(context.openAIKey)
+
   console.log("Creating Chat Completion")
 
   const parsed = context.transcript.events

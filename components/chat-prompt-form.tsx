@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button"
 import { TooltipWrapper } from "@/components/ui/tooltip-wrapper"
 import { useChat } from "@/contexts/chat-context"
 import { useExtension } from "@/contexts/extension-context"
+import { openAIKeyAtom } from "@/lib/atoms/openai"
 import { useEnterSubmit } from "@/lib/hooks/use-enter-submit"
 import { cn } from "@/lib/utils"
 import { LightningBoltIcon, PaperPlaneIcon } from "@radix-ui/react-icons"
+import { useAtomValue } from "jotai"
 import type { Model } from "openai/resources"
 import React, { useEffect, useRef } from "react"
 import Textarea from "react-textarea-autosize"
@@ -23,6 +25,7 @@ type Message = {
 export default function PromptForm({ className }: PromptFormProps) {
   const port = usePort("chat")
   const { extensionData } = useExtension()
+  const openAIKey = useAtomValue(openAIKeyAtom)
 
   const {
     chatMessages,
@@ -55,7 +58,7 @@ export default function PromptForm({ className }: PromptFormProps) {
     port.send({
       model: model,
       messages: messages,
-      context: extensionData
+      context: { ...extensionData, openAIKey }
     })
   }
 
