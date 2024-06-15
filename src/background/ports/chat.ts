@@ -1,4 +1,4 @@
-import { createOpenAI } from "@ai-sdk/openai"
+import { getProviderByModel } from "@/utils/llm"
 import { streamText } from "ai"
 
 import type { PlasmoMessaging } from "@plasmohq/messaging"
@@ -15,12 +15,14 @@ START OF TRANSCRIPT
 END OF TRANSCRIPT
 `
 
-const openai = createOpenAI({
-  apiKey: "YOUR_API_KEY"
-})
-
-async function createChatCompletion(model: string, messages: any, context: any) {
+async function createChatCompletion(
+  model: string = "gpt-3.5-turbo",
+  messages: any,
+  context: any
+) {
   console.log("Creating Chat Completion")
+
+  const aiProvider = getProviderByModel(model)
 
   const parsed = context.transcript.events
     .filter((x: { segs: any }) => x.segs)
@@ -39,7 +41,7 @@ async function createChatCompletion(model: string, messages: any, context: any) 
   console.log(messages)
 
   const result = await streamText({
-    model: openai(model || "gpt-3.5-turbo"),
+    model: aiProvider(model),
     messages
   })
 

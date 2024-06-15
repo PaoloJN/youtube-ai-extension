@@ -29,6 +29,7 @@
     "ai": "^3.1.36",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "ollama-ai-provider": "^0.7.0",
     "openai": "^4.38.5",
     "plasmo": "0.85.2",
     "react": "18.2.0",
