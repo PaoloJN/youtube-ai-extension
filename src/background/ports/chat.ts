@@ -22,7 +22,7 @@ async function createChatCompletion(
 ) {
   console.log("Creating Chat Completion")
 
-  const aiProvider = getProviderByModel(model)
+  const aiProvider = getProviderByModel(model, context)
 
   const parsed = context.transcript.events
     .filter((x: { segs: any }) => x.segs)

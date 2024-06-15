@@ -11,7 +11,7 @@ async function createCompletion(
 ) {
   console.log("Creating Chat Completion")
 
-  const aiProvider = getProviderByModel(model, context[OPENAI_API_KEY_STORAGE_KEY])
+  const aiProvider = getProviderByModel(model, context)
 
   const parsed = context.transcript.events
     .filter((x: { segs: any }) => x.segs)
