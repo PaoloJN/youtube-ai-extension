@@ -1,21 +1,52 @@
-MIT License
+GNU AFFERO GENERAL PUBLIC LICENSE
+Version 3, 19 November 2007
 
-Copyright (c) 2024 Paolo Nessim
+Copyright (C) 2023 PaoloJN
+Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+### Preamble
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software. If the software is modified and used on a server, the AGPL ensures that the complete source code of the modified software is available to the users of that server.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+The licenses for most software and other practical works are designed to take away your freedom to share and change the works. By contrast, the GNU General Public Licenses are intended to guarantee your freedom to share and change all versions of a program--to make sure it remains free software for all its users.
+
+This License is a specific implementation of the GNU General Public License, with the additional provision that if you run a modified program on a server and make it interact with users remotely through that server, you must also provide the users with the source code corresponding to the modified version. Developers that use the GNU AGPL protect your rights with two steps: (1) assert copyright on the software, and (2) offer you this License giving you legal permission to copy, distribute and/or modify it.
+
+For exact terms, conditions, and the full text of the license, see below.
+
+---
+
+### Terms and Conditions for Copying, Distribution, and Modification
+
+#### 0. Definitions
+
+"This License" refers to version 3 of the GNU Affero General Public License.  
+"The Program" refers to any copyrightable work licensed under this License.  
+
+---
+
+#### 1. Permissions and Conditions
+
+You are permitted to copy, modify, and distribute the Program's source code under the following conditions:
+- Modifications must be released under the same license.
+- If the Program is modified to include interaction over a network, the complete source code of the modified Program must be made available to users.
+
+**Commercial Use Restriction**:  
+No monetization of this Program, its source code, or its derivatives is allowed without explicit written permission from the copyright holder.
+
+---
+
+#### 2. Conveying Non-Source Forms
+
+When conveying the Program in object code form, you must also provide access to the source code or ensure that the source is available on a freely accessible platform.
+
+---
+
+#### 3. No Warranty
+
+The Program is licensed "as is," without warranty of any kind, either express or implied.
+
+---
+
+For full terms and conditions, visit: [https://www.gnu.org/licenses/agpl-3.0.html](https://www.gnu.org/licenses/agpl-3.0.html)
+
