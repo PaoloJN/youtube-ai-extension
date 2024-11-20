@@ -66,6 +66,28 @@ To install and run the YouTube Chat Extension locally, follow these steps:
 > The extension does not support the new YouTube layout. To revert to the old layout, use the uBlock Origin extension. The extension should then work correctly.
 
 
+## Why This License Change?
+
+I believe in the principles of open-source software (OSS)—creating tools and sharing knowledge to help others innovate and learn. However, one of my biggest frustrations is seeing people take OSS works, monetize them without permission, and give nothing back to the project or community that made it possible.
+
+**Why this matters:**
+- **It undermines the spirit of OSS**: Open-source is built on collaboration and trust. When people monetize others' OSS projects without contributing back, they exploit that trust.
+- **It discourages creators**: Many of us work hard on these projects in our spare time. Seeing them turned into profit machines by others, without recognition or support, is deeply disheartening.
+- **It impacts innovation**: OSS thrives when contributors and users feel appreciated and supported. Exploitation discourages creators from sharing their work.
+
+This is why I’ve updated the license to restrict unauthorized monetization. If you appreciate this project and want to use it commercially, I encourage you to contribute or reach out for a commercial license. Let’s build a community that respects creators and fosters innovation.
+
+## License
+
+Effective immediately, this project is licensed under the **GNU Affero General Public License v3 (AGPLv3)**.
+
+### Key License Updates
+- **Non-Commercial Use Only**: The source code can be used and modified freely for non-commercial purposes.
+- **No Monetization of Forks**: Commercial use, redistribution, or monetization of this code or its derivatives is **prohibited** without prior written permission from the original author.
+- **Old / New Forks Must Comply**: Any forks or clones of this project must adhere to the AGPLv3 license and the restrictions on monetization.
+
+> **Important**: If you wish to use this project for commercial purposes or have any questions, please contact paolo.j.nessim@gmail.com.
+
 ## Acknowledgments
 
 This project wouldn't be possible without the following resources:
@@ -75,3 +97,5 @@ This project wouldn't be possible without the following resources:
 - [Tailwind CSS](https://tailwindcss.com)
 - [Plasmo Extension](https://www.plasmo.com)
 - [Chrome Extension Documentation](https://developer.chrome.com/docs/extensions/)
+
+
