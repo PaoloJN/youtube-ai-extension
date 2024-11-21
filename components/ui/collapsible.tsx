@@ -1,6 +1,10 @@
-import { cn } from "@/lib/utils"
-import * as CollapsiblePrimitive from "@radix-ui/react-collapsible"
-import * as React from "react"
+import { cn } from "@/lib/utils";
+import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
+import * as React from "react";
+
+
+
+
 
 const Collapsible = CollapsiblePrimitive.Root
 
@@ -13,7 +17,7 @@ const CollapsibleContent = React.forwardRef<
   <CollapsiblePrimitive.CollapsibleContent
     ref={ref}
     className={cn(
-      "overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up",
+      "data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up data-[state=closed]:overflow-hidden",
       className
     )}
     {...props}

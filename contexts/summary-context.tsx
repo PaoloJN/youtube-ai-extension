@@ -1,15 +1,15 @@
-import { openAIKeyAtom } from "@/lib/atoms/openai"
-import { models, prompts, type Model, type Prompt } from "@/lib/constants"
-import { useAtomValue } from "jotai"
-import * as React from "react"
+import { openAIKeyAtom } from "@/lib/atoms/openai";
+import { models, OPENAI_API_KEY_STORAGE_KEY, prompts, type Model, type Prompt } from "@/lib/constants";
+import { useAtomValue } from "jotai";
+import * as React from "react";
+import { usePort } from "@plasmohq/messaging/hook";
+import { useExtension } from "./extension-context";
+import { useModel } from './model-context'
 
-import { usePort } from "@plasmohq/messaging/hook"
-
-import { useExtension } from "./extension-context"
 
 interface SummaryContext {
-  summaryModel: Model
-  setSummaryModel: (model: Model) => void
+  // summaryModel: Model
+  // setSummaryModel: (model: Model) => void
   summaryPrompt: Prompt
   setSummaryPrompt: (prompt: Prompt) => void
   summaryContent: string | null
@@ -39,13 +39,15 @@ export function SummaryProvider({ children }: SummaryProviderProps) {
   const port = usePort("completion")
   const openAIKey = useAtomValue(openAIKeyAtom)
 
-  const [summaryModel, setSummaryModel] = React.useState<Model>(models[0])
+  // const [summaryModel, setSummaryModel] = React.useState<Model>(models[0])
   const [summaryPrompt, setSummaryPrompt] = React.useState<Prompt>(prompts[0])
   const [summaryContent, setSummaryContent] = React.useState<string | null>(null)
   const [summaryIsError, setSummaryIsError] = React.useState<boolean>(false)
   const [summaryIsGenerating, setSummaryIsGenerating] = React.useState<boolean>(false)
 
   const { extensionData, extensionLoading } = useExtension()
+
+  const { selectedModel } = useModel()
 
   // functions to be used in the context
 
@@ -61,10 +63,16 @@ export function SummaryProvider({ children }: SummaryProviderProps) {
     setSummaryIsError(false)
     port.send({
       prompt: summaryPrompt.content,
-      model: summaryModel.content,
-      context: { ...extensionData, openAIKey }
+      model: selectedModel.content,
+      context: { ...extensionData, [OPENAI_API_KEY_STORAGE_KEY]: openAIKey }
     })
   }
+
+  React.useEffect(() => {
+    setSummaryContent(null)
+    setSummaryIsGenerating(false)
+    setSummaryIsError(false)
+  }, [extensionLoading])
 
   React.useEffect(() => {
     setSummaryContent(null)
@@ -87,6 +95,7 @@ export function SummaryProvider({ children }: SummaryProviderProps) {
 
   React.useEffect(() => {
     console.log("Use Effect That Streams Summary Error Called")
+    console.log(port)
     if (port.data?.error !== undefined && port.data?.error !== null) {
       setSummaryIsError(true)
       setSummaryContent(null)
@@ -96,8 +105,8 @@ export function SummaryProvider({ children }: SummaryProviderProps) {
   }, [port.data?.error])
 
   const value = {
-    summaryModel,
-    setSummaryModel,
+    // summaryModel,
+    // setSummaryModel,
     summaryPrompt,
     setSummaryPrompt,
     summaryContent,

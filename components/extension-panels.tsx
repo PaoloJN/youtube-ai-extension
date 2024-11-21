@@ -23,7 +23,7 @@ export default function ExtensionPanels({}: ExtensionPanelsProps) {
     )
   }
   return (
-    <div>
+    <div className="h-full w-full">
       {extensionPanel === "Summary" && <Summary />}
       {extensionPanel === "Transcript" && <Transcript />}
       {extensionPanel === "Chat" && <Chat />}

@@ -1,13 +1,17 @@
-import { createLlm } from "@/utils/llm"
+import { OPENAI_API_KEY_STORAGE_KEY } from "@/lib/constants"
+import { getProviderByModel } from "@/utils/llm"
+import { streamText, type CoreMessage } from "ai"
 
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 
-// const SYSTEM = "Given the transcript of a YouTube video along with relevant video metadata (such as video title, description), produce contextually relevant content as requested by the user. The output should be engaging and informative."
-
-async function createCompletion(model: string, prompt: string, context: any) {
-  const llm = createLlm(context.openAIKey)
-
+async function createCompletion(
+  model: string = "gpt-3.5-turbo",
+  prompt: string,
+  context: any
+) {
   console.log("Creating Chat Completion")
+
+  const aiProvider = getProviderByModel(model, context)
 
   const parsed = context.transcript.events
     .filter((x: { segs: any }) => x.segs)
@@ -21,11 +25,14 @@ async function createCompletion(model: string, prompt: string, context: any) {
   console.log("User Prompt")
   console.log(USER)
 
-  return llm.beta.chat.completions.stream({
-    messages: [{ role: "user", content: USER }],
-    model: model || "gpt-3.5-turbo",
-    stream: true
+  const messages = [{ role: "user", content: USER }] satisfies CoreMessage[]
+
+  const result = await streamText({
+    model: aiProvider(model),
+    messages
   })
+
+  return result.textStream
 }
 
 const handler: PlasmoMessaging.PortHandler = async (req, res) => {
@@ -45,15 +52,15 @@ const handler: PlasmoMessaging.PortHandler = async (req, res) => {
   try {
     const completion = await createCompletion(model, prompt, context)
 
-    completion.on("content", (delta, snapshot) => {
+    for await (const delta of completion) {
       cumulativeDelta += delta
-      res.send({ message: cumulativeDelta, error: "", isEnd: false })
-    })
 
-    completion.on("end", () => {
-      res.send({ message: "END", error: "", isEnd: true })
-    })
+      res.send({ message: cumulativeDelta, error: null, isEnd: false })
+    }
+
+    res.send({ message: "END", error: null, isEnd: true })
   } catch (error) {
+    console.log(error)
     res.send({ error: "something went wrong" })
   }
 }

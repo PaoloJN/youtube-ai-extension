@@ -1,5 +1,6 @@
 import { models, type Message, type Model } from "@/lib/constants"
 import * as React from "react"
+import { useModel } from './model-context'
 
 interface ChatState {
   chatModel: Model
@@ -51,7 +52,8 @@ interface ChatProviderProps {
 }
 
 export function ChatProvider({ children }: ChatProviderProps) {
-  const [chatModel, setChatModel] = React.useState<Model>(initialState.chatModel)
+  const { selectedModel, setSelectedModel } = useModel()
+  // const [chatModel, setChatModel] = React.useState<Model>(initialState.chatModel)
   const [chatIsGenerating, setChatIsGenerating] = React.useState<boolean>(
     initialState.chatIsGenerating
   )
@@ -70,7 +72,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
   )
 
   const value = {
-    chatModel,
+    chatModel: selectedModel,
     chatIsGenerating,
     chatIsError,
     chatMessages,
@@ -78,7 +80,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
     chatSuggestions,
     chatIsGeneratingSuggestions,
     chatIsErrorSuggestions,
-    setChatModel,
+    setChatModel: setSelectedModel,
     setChatIsGenerating,
     setChatIsError,
     setChatMessages,
