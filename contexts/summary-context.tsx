@@ -1,5 +1,11 @@
 import { openAIKeyAtom } from "@/lib/atoms/openai"
-import { models, prompts, type Model, type Prompt } from "@/lib/constants"
+import {
+  models,
+  OPENAI_API_KEY_STORAGE_KEY,
+  prompts,
+  type Model,
+  type Prompt
+} from "@/lib/constants"
 import { useAtomValue } from "jotai"
 import * as React from "react"
 
@@ -62,7 +68,7 @@ export function SummaryProvider({ children }: SummaryProviderProps) {
     port.send({
       prompt: summaryPrompt.content,
       model: summaryModel.content,
-      context: { ...extensionData, openAIKey }
+      context: { ...extensionData, [OPENAI_API_KEY_STORAGE_KEY]: openAIKey }
     })
   }
 

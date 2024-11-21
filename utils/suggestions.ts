@@ -1,5 +1,7 @@
 import { correctJsonString } from "@/utils/json-autocomplete"
-import { llm } from "@/utils/llm"
+import { getProviderByModel } from "@/utils/llm"
+import { generateObject, type CoreMessage } from "ai"
+import { z } from "zod"
 
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 
@@ -21,8 +23,13 @@ START OF TRANSCRIPT
 END OF TRANSCRIPT
 `
 
-async function createSuggestionsCompletion(model: string, context: any) {
+async function createSuggestionsCompletion(
+  model: string = "gpt-3.5-turbo",
+  context: any
+) {
   console.log("Creating Suggestions Completion")
+
+  const aiProvider = getProviderByModel(model, context)
 
   const parsed = context.transcript.events
     .filter((x: { segs: any }) => x.segs)
@@ -35,17 +42,20 @@ async function createSuggestionsCompletion(model: string, context: any) {
     "{transcript}",
     parsed
   )
-  return llm.beta.chat.completions.stream({
-    messages: [{ role: "user", content: SYSTEM_WITH_CONTEXT }],
-    model: "gpt-3.5-turbo-1106",
-    stream: true,
-    response_format: { type: "json_object" }
+  const messages = [
+    { role: "user", content: SYSTEM_WITH_CONTEXT }
+  ] satisfies CoreMessage[]
+
+  const result = await generateObject({
+    model: aiProvider(model),
+    schema: z.any(),
+    messages
   })
+
+  return result.object
 }
 
 const handler: PlasmoMessaging.PortHandler = async (req, res) => {
-  let cumulativeDelta = ""
-
   const model = req.body.model
   const context = req.body.context
 
@@ -56,20 +66,9 @@ const handler: PlasmoMessaging.PortHandler = async (req, res) => {
 
   try {
     const completion = await createSuggestionsCompletion(model, context)
-
-    completion.on("content", (delta, snapshot) => {
-      cumulativeDelta += delta
-
-      const correctJson = correctJsonString(cumulativeDelta)
-      console.log("Correct Json")
-
-      console.log(correctJson)
-      res.send({ message: correctJson, error: "", isEnd: false })
-    })
-
-    completion.on("end", () => {
-      res.send({ message: "END", error: "", isEnd: true })
-    })
+    const correctJson = correctJsonString(completion)
+    res.send({ message: correctJson, error: "", isEnd: false })
+    res.send({ message: "END", error: "", isEnd: true })
   } catch (error) {
     res.send({ error: "something went wrong" })
   }
