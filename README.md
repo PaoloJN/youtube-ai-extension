@@ -2,9 +2,16 @@
 
 <h1 align="center">YouTube AI Extension</h1>
 
+<p align="center">
+  <strong>🚀 Big update coming June 10, 2025! 🚀</strong><br/>
+  A new version is on the way with powerful new features, a streamlined install process, and an official release on the Chrome Web Store.
+</p>
+
+
 <p align="center" style="padding: 20px 0;">
 YouTube Chat Extension allows you to chat directly with YouTube videos, providing a unique interactive experience.
 </p>
+
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=d35tmCKP4ds&ab_channel=PaoloNessim"><strong>Demo Video</strong></a> ·
@@ -24,9 +31,7 @@ YouTube Chat Extension allows you to chat directly with YouTube videos, providin
 
 ## Roadmap
 
-- Support Ollama
-- RAG for longer videos ?
-- More features
+- **June 10, 2025**: Major update with new features and official Chrome Web Store release.
 
 ## Installation
 
@@ -66,27 +71,17 @@ To install and run the YouTube Chat Extension locally, follow these steps:
 > The extension does not support the new YouTube layout. To revert to the old layout, use the uBlock Origin extension. The extension should then work correctly.
 
 
-## Why This License Change?
-
-I believe in the principles of open-source software (OSS)—creating tools and sharing knowledge to help others innovate and learn. However, one of my biggest frustrations is seeing people take OSS works, monetize them without permission, and give nothing back to the project or community that made it possible.
-
-**Why this matters:**
-- **It undermines the spirit of OSS**: Open-source is built on collaboration and trust. When people monetize others' OSS projects without contributing back, they exploit that trust.
-- **It discourages creators**: Many of us work hard on these projects in our spare time. Seeing them turned into profit machines by others, without recognition or support, is deeply disheartening.
-- **It impacts innovation**: OSS thrives when contributors and users feel appreciated and supported. Exploitation discourages creators from sharing their work.
-
-This is why I’ve updated the license to restrict unauthorized monetization. If you appreciate this project and want to use it commercially, I encourage you to contribute or reach out for a commercial license. Let’s build a community that respects creators and fosters innovation.
 
 ## License
 
-Effective immediately, this project is licensed under the **GNU Affero General Public License v3 (AGPLv3)**.
+This project is licensed under the **[AGPL-3.0](https://opensource.org/licenses/AGPL-3.0)** for non-commercial use. 
 
-### Key License Updates
-- **Non-Commercial Use Only**: The source code can be used and modified freely for non-commercial purposes.
-- **No Monetization of Forks**: Commercial use, redistribution, or monetization of this code or its derivatives is **prohibited** without prior written permission from the original author.
-- **Old / New Forks Must Comply**: Any forks or clones of this project must adhere to the AGPLv3 license and the restrictions on monetization.
+### Commercial Use
 
-> **Important**: If you wish to use this project for commercial purposes or have any questions, please contact paolo.j.nessim@gmail.com.
+For commercial use or deployments requiring a setup fee, please contact us
+for a commercial license at [paolo.j.nessim@gmail.com](mailto:paolo.j.nessim@gmail.com).
+
+By using this software, you agree to the terms of the license.
 
 ## Acknowledgments
 
@@ -97,5 +92,4 @@ This project wouldn't be possible without the following resources:
 - [Tailwind CSS](https://tailwindcss.com)
 - [Plasmo Extension](https://www.plasmo.com)
 - [Chrome Extension Documentation](https://developer.chrome.com/docs/extensions/)
-
 
