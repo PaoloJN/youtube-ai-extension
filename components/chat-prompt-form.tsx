@@ -3,6 +3,7 @@ import { TooltipWrapper } from "@/components/ui/tooltip-wrapper"
 import { useChat } from "@/contexts/chat-context"
 import { useExtension } from "@/contexts/extension-context"
 import { openAIKeyAtom } from "@/lib/atoms/openai"
+import { OPENAI_API_KEY_STORAGE_KEY } from "@/lib/constants"
 import { useEnterSubmit } from "@/lib/hooks/use-enter-submit"
 import { cn } from "@/lib/utils"
 import { PaperPlaneIcon } from "@radix-ui/react-icons"
@@ -57,7 +58,7 @@ export default function PromptForm({ className }: PromptFormProps) {
     port.send({
       model: model,
       messages: messages,
-      context: { ...extensionData, openAIKey }
+      context: { ...extensionData, [OPENAI_API_KEY_STORAGE_KEY]: openAIKey }
     })
   }
 
